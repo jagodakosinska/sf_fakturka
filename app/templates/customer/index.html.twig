@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kontrahenci
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="row mt-3">
+		{% if customers|length > 0 %}
+			<div class="col-2 pl-3">Lista Kontrahentów:
+				<hr></div>
+			<div class="col-8">
+				<table class="table table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col-1">Lp.</th>
+							<th scope="col-2">Nazwa</th>
+							<th scope="col-1">NIP</th>
+							<th scope="col-2">Opis</th>
+							<th scope="col-4">Adres</th>
+							<th scope="col-1">Edycja</th>
+							<th scope="col-1">Usuń</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% for customer in customers %}
+							<tr>
+								<td>{{ loop.index }}</td>
+								<td>{{ customer.name }}</td>
+								<td>{{ customer.nip }}</td>
+								<td>{{ customer.description }}</td>
+								{% if  customer.mainaddress is not null %}
+									<td>{{customer.mainaddress.street}},
+										{{customer.mainaddress.zipcode}}
+										{{customer.mainaddress.city}}</td>
+
+
+								{% endif %}
+								<td>
+									<a href="{{ path('customer_edit', {id: customer.id})}}" class='link-success'>
+										<i class="fas fa-edit"></i>
+									</a>
+								</td>
+								<td>
+									<a href="{{ path('customer_delete', {id: customer.id})}}" onclick="return confirm('Na pewno chcesz usunąć kontrahenta?')" class='link-danger'>
+										<i class="fas fa-trash"></i>
+									</a>
+								</td>
+							{% endfor %}
+						</tr>
+					</tbody>
+				</tbody>
+			</table>
+
+		</div>
+		<div class="col-2"></div>
+
+
+	{% else %}
+
+		<div class="col-2 mt-3 mb-3">
+			<span class="info_customer ">Brak kontrahentów</span>
+		</div>
+		<div class="col-8"></div>
+
+	{% endif %}
+	<div class="col-2"></div>
+	<div class="col-2">
+		<a href="{{ path('customer_add')}}" class="btn btn-primary">Dodaj kontrahenta</a>
+	</div>
+
+</div>{% endblock %}

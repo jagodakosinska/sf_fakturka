@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Towary i Usługi
+{% endblock %}
+
+{% block body %}
+
+	{% if items|length > 0 %}
+		<div class="row mt-3">
+			<div class="col-2 pl-3">Lista Pozycji:
+				<hr></div>
+			<div class="col-6">
+				<table class="table table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col-3">Lp.</th>
+							<th scope="col-3">Nazwa</th>
+							<th scope="col-3">Opis</th>
+							<th scope="col-1">Edycja</th>
+							<th scope="col-1">Usuń</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% for item in items %}
+							<tr>
+								<td>{{ loop.index }}</td>
+								<td>{{ item.name }}</td>
+								<td>{{ item.description }}
+								</td>
+								<td>
+									<a href="{{ path('item_edit', {id: item.id})}}" class='link-success'>
+										<i class="fas fa-edit"></i>
+									</a>
+								</td>
+								<td>
+									<a href="{{ path('item_delete', {id: item.id})}}" onclick="return confirm('Na pewno chcesz usunąć pozycję?')" class='link-danger'>
+										<i class="fas fa-trash"></i>
+									</a>
+								</td>
+
+							{% endfor %}
+
+						</tbody>
+					</tbody>
+				</table>
+				<a href="{{ path('item_add')}}" class="btn btn-primary">Dodaj Pozycje</a>
+			</div>
+			<div class="col-4"></div>
+
+		</div>
+	{% else %}
+		<span class="info_item">Brak dodanych towarów i usług</span>
+	{% endif %}
+
+
+{% endblock %}

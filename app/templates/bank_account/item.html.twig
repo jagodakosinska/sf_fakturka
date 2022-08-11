@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container-fluid mt-3">
+		<h1>{{form_title}}</h1>
+		<div class="col-4">
+			{{form(bank_account_form)}}
+
+			</div>
+		</div>
+	{% endblock %}

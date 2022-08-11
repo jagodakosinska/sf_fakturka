@@ -1,0 +1,71 @@
+{% set route_name = app.request.attributes.get('_route') %}
+
+
+<!-- Navbar -->
+<nav
+	class="navbar navbar-nav navbar-expand-lg navbar-light bg-light">
+	<!-- Container wrapper -->
+	<div
+		class="container-fluid">
+		<!-- Toggle button -->
+		<button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fas fa-bars"></i>
+		</button>
+
+		<!-- Collapsible wrapper -->
+		<div
+			class="collapse navbar-collapse" id="navbarSupportedContent">
+			<!-- Navbar brand -->
+			<a class="navbar-brand mt-2 mt-lg-0" href="{{path('app_homepage')}}">
+				Home
+			</a>
+			<!-- Left links -->
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item ">
+					<a class="nav-link " href="#">Faktury</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link{% if route_name starts with 'customer_' %} active {% endif %}" href="{{path('customer_list')}}">Kontrahenci</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link{% if route_name starts with 'item_' %} active {% endif %}" href="{{path('item_list')}}">Towary i Usługi</a>
+				</li>
+			</ul>
+			<!-- Left links -->
+		</div>
+		<!-- Collapsible wrapper -->
+
+		<!-- Right elements -->
+		<div
+			class="d-flex align-items-center">
+
+			<!-- Profile -->
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="https://mdbootstrap.com/img/new/avatars/2.jpg" class="rounded-circle" height="25" alt="" loading="lazy"/>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+						<li>
+							<a class="dropdown-item" href="#">Mój Profil</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{path('bank_account_list') }}">Konta Bankowe</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Moje Adresy</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{path('app_logout')}}">Logout</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+
+		</div>
+		<!-- Right elements -->
+	</div>
+	<!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
